@@ -10,6 +10,6 @@ public class SpringBeans {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return (PasswordEncoder) new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder();
     }
 }
