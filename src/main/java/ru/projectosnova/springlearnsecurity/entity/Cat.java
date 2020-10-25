@@ -1,11 +1,12 @@
-package ru.projectosnova.springlearnsecurity;
+package ru.projectosnova.springlearnsecurity.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class Cat {
+public class Cat{
 
     @Id
     @GeneratedValue

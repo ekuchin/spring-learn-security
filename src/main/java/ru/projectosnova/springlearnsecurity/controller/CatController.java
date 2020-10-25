@@ -1,45 +1,36 @@
 package ru.projectosnova.springlearnsecurity.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import ru.projectosnova.springlearnsecurity.entity.Cat;
+import ru.projectosnova.springlearnsecurity.repository.CatRepository;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class CatController {
 
-    //@Autowired
-    //UserRepository repoUser;
-
     @Autowired
-    PasswordEncoder passwordEncoder;
+    CatRepository repo;
 
-   /*
-    @PostMapping("/auth")
-    public ResponseEntity<?> getToken(@RequestBody User user){
-
-        try{
-            User dbuser = repoUser.findByLogin(user.getLogin());
-            if (passwordEncoder.matches(user.getPassword(),dbuser.getPassword())){
-                //TODO Генерим токен
-                return new ResponseEntity<User>(dbuser, HttpStatus.OK);
-            }
-        }
-        catch (Exception e){}
-        return new ResponseEntity<String>("Login incorrect", HttpStatus.OK);
-
-    }
-
-    */
 
     @GetMapping("/cats")
-    public ResponseEntity<?> getCats(){
-        //TODO Проверяем токен
-        return new ResponseEntity<String>("Коты", HttpStatus.OK);
+     public ResponseEntity<?> getCats() throws Exception {
+        return new ResponseEntity<>(repo.findAll(), HttpStatus.OK);
     }
+
+
+
 
 }
