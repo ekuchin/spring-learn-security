@@ -1,5 +1,7 @@
 package ru.projectosnova.springlearnsecurity.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,7 +13,9 @@ public class Cat{
     @Id
     @GeneratedValue
     private Long id;
+    @JsonProperty
     private String name;
+    @JsonProperty
     private String breed;
 
     public Cat() {
