@@ -1,4 +1,4 @@
-package ru.projectosnova.springlearnsecurity;
+package ru.projectosnova.springlearnsecurity.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CatController {
 
-    @Autowired
-    UserRepository repoUser;
+    //@Autowired
+    //UserRepository repoUser;
 
     @Autowired
     PasswordEncoder passwordEncoder;
 
+   /*
     @PostMapping("/auth")
     public ResponseEntity<?> getToken(@RequestBody User user){
 
@@ -29,9 +30,11 @@ public class CatController {
             }
         }
         catch (Exception e){}
-        return new ResponseEntity<String>("Login incorrect", HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<String>("Login incorrect", HttpStatus.OK);
 
     }
+
+    */
 
     @GetMapping("/cats")
     public ResponseEntity<?> getCats(){
