@@ -8,9 +8,9 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-import ru.projectosnova.springlearnsecurity.config.JwtTokenUtil;
-import ru.projectosnova.springlearnsecurity.model.JwtRequest;
-import ru.projectosnova.springlearnsecurity.model.JwtResponse;
+import ru.projectosnova.springlearnsecurity.jwt.JwtRequest;
+import ru.projectosnova.springlearnsecurity.jwt.JwtToken;
+import ru.projectosnova.springlearnsecurity.jwt.JwtResponse;
 import ru.projectosnova.springlearnsecurity.service.JwtUserDetailsService;
 
 @RestController
@@ -21,7 +21,7 @@ public class JwtController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+    private JwtToken jwtToken;
 
     @Autowired
     private JwtUserDetailsService userDetailsService;
@@ -35,9 +35,8 @@ public class JwtController {
         } catch (BadCredentialsException e) {throw new Exception("INVALID_CREDENTIALS", e);
         }
         UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getUsername());
-        String token = jwtTokenUtil.generateToken(userDetails);
+        String token = jwtToken.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token));
-        //return ResponseEntity.ok(token);
     }
 
 }

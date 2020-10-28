@@ -1,4 +1,4 @@
-package ru.projectosnova.springlearnsecurity.model;
+package ru.projectosnova.springlearnsecurity.jwt;
 
 public class JwtRequest {
     private String username;
