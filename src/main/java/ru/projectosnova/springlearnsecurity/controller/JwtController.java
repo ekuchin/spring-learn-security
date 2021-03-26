@@ -14,7 +14,7 @@ import ru.projectosnova.springlearnsecurity.jwt.JwtResponse;
 import ru.projectosnova.springlearnsecurity.service.JwtUserDetailsService;
 
 @RestController
-//@CrossOrigin
+@CrossOrigin(origins = "*")
 public class JwtController {
 
     @Autowired
